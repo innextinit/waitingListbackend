@@ -1,0 +1,425 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Waiting List API",
+    "description": "Set up for saving and getting waiting list from new Products",
+    "contact": {
+      "github": "innextinit"
+    },
+    "versiion": "1.0.0-oas3"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    },
+    {
+      "url": "init-waitinglist.herokuapp.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Authentication API endpoint"
+    },
+    {
+      "name": "User",
+      "description": "User CRUD endpoints"
+    },
+    {
+      "name": "WaitingList",
+      "description": "Waiting list CRUD endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Signup with email and password",
+        "description": "Signup user to manage all waiting list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "user@domain.com"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Signup successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRespons"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "login with email and password",
+        "description": "Login user to see all waiting list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "user@domain.com"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRespons"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all users",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/access_token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users retrieved",
+            "parameters": [
+              {
+                "$ref": "#/components/parameters/access_token"
+              },
+              {
+                "$ref": "#/components/parameters/page"
+              },
+              {
+                "$ref": "#/components/parameters/limit"
+              }
+            ],
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalDocuments": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete many users",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/email"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/list": {
+      "get": {
+        "tags": ["WaitingList"],
+        "summary": "Get all waiting list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/access_token"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Waiting list retrieved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalDocuments": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/WaitingList"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "tags": ["WaitingList"],
+        "summary": "Add new email to the waiting list",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "user@domain.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Thanks for joining waiting list"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@domain.com"
+          },
+          "password": {
+            "type": "string"
+          },
+          "access_level": {
+            "type": "integer"
+          }
+        }
+      },
+      "UserRespons": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "WaitingList": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@domain.com"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "page": {
+        "in": "query",
+        "name": "page",
+        "type": "integer",
+        "default": 1
+      },
+      "limit": {
+        "in": "query",
+        "name": "limit",
+        "type": "integer",
+        "default": 10,
+        "description": "Maximum number of documents returned"
+      },
+      "access_token": {
+        "in": "header",
+        "name": "x-access-token",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "email": {
+        "in": "query",
+        "name": "email",
+        "type": "string",
+        "description": "Comma-separated list of emails",
+        "required": true
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad request"
+      },
+      "401": {
+        "description": "Unauthorized"
+      },
+      "403": {
+        "description": "Forbidden"
+      },
+      "404": {
+        "description": "Not found"
+      },
+      "500": {
+        "description": "Internal  server error"
+      }
+    }
+  }
+}
