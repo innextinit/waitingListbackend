@@ -22,7 +22,7 @@ exports.getAllListMember = async (req, res) => {
     const { user } = req;
     const { page, limit } = req.query;
 
-    if (user.access_level !== 1) {
+    if (user.access_level < 2) {
       return errorResponse(res, 401, "Unauthorized");
     }
 
