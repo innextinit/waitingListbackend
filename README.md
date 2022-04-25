@@ -1,11 +1,16 @@
 # waitingListbackend
+
 a small waiting list API
 
 ## Usage
+
 - Clone repository using command `git clone https://github.com/innextinit/waitingListbackend.git`
 - Then change into the cloned folder with `cd waitingListbackend`
 - Now install the project with `npm i` or `npm install`
+- Run `npm run dev` to start the development server
 - Make use of the /docs to have access to the API endpoints
+
+## How To Contribute
 
 - Create a new branch with `git checkout -b [branch-name]`. Your branch name should describe the feature you are implementing. e.g
 
