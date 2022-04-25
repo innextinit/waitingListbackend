@@ -28,5 +28,13 @@ git commit -m "added login with email"
 - Finally push update to remote branch with `git push origin [your-branch-name]` e.g
 
 ```bash
-git push origin login-with-email
+git push -u origin login-with-email
 ```
+
+or
+
+```bash
+git push -u origin HEAD
+```
+
+
