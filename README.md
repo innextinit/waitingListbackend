@@ -4,11 +4,43 @@ a small waiting list API
 
 ## Usage
 
-- Clone repository using command `git clone https://github.com/innextinit/waitingListbackend.git`
-- Then change into the cloned folder with `cd waitingListbackend`
-- Now install the project with `npm i` or `npm install`
-- Run `npm run dev` to start the development server
-- Make use of the /docs to have access to the API endpoints
+- Clone repository using command
+
+```git
+git clone https://github.com/innextinit/waitingListbackend.git
+```
+
+- Then change into the cloned folder with
+
+```
+cd waitingListbackend
+```
+
+- Now install the project with
+
+```
+npm i
+```
+
+or
+
+```
+npm install
+```
+
+- Rename the `.env.example` file to `.env` and input the values e.g mongodb url, port etc.
+
+```
+mv .env.example .env
+```
+
+- Start the development server with
+
+```
+npm run dev
+```
+
+- Go to `http://localhost:[post]/docs` to access the API endpoints
 
 ## How To Contribute
 
@@ -36,5 +68,3 @@ or
 ```bash
 git push -u origin HEAD
 ```
-
-
