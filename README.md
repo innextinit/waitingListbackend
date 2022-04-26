@@ -40,7 +40,13 @@ mv .env.example .env
 npm run dev
 ```
 
-- Go to `http://localhost:[post]/docs` to access the API endpoints
+- Go to `http://localhost:[post]/docs` to access the API endpoints e.g
+
+```
+http://localhost:5000/docs
+```
+
+- To control access to your waiting list, I set up a whitelist in `index.js` file, add your origin to the whitelist
 
 ## How To Contribute
 
@@ -51,6 +57,17 @@ git checkout -b login-with-email
 ```
 
 - After making changes, run `git add .` to stage all of them or `git add [filename]` to add only specific files.
+
+```
+git add .
+```
+
+or
+
+```
+git add index.js
+```
+
 - Commit your changes by running `git commit` providing a descriptive commit message e.g
 
 ```bash
